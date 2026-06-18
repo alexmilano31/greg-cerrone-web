@@ -1,0 +1,1191 @@
+/* ==========================================================================
+   CSS Variables & Typography
+   ========================================================================== */
+:root {
+    --color-bg: #000000;
+    --color-text: #ffffff;
+    --color-accent: #C5A059;
+    /* Gold / Earthy Beige */
+    --color-surface: #111111;
+    --color-border: rgba(255, 255, 255, 0.1);
+
+    --font-heading: 'Cinzel', serif;
+    /* Classy, elegant font */
+    --font-subheading: 'Oswald', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+
+    --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+/* Typography styles */
+h1 {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+}
+
+h2,
+h3,
+h4,
+.nav-links a,
+.logo,
+.btn {
+    font-family: var(--font-subheading);
+    text-transform: uppercase;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-text);
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-accent);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.section {
+    padding: 120px 0;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 60px;
+    text-align: center;
+    font-weight: 400;
+}
+
+.section-subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 0.3em;
+    margin-top: -40px;
+    margin-bottom: 60px;
+    text-align: center;
+    font-weight: 300;
+    color: var(--color-accent);
+    text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 30px 0;
+    transition: all var(--transition-fast);
+}
+
+.navbar.scrolled {
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 20px 0;
+    backdrop-filter: blur(10px);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    z-index: 101;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.nav-links a {
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-accent);
+    transition: width var(--transition-fast);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    z-index: 101;
+}
+
+.hamburger .bar {
+    display: block;
+    width: 25px;
+    height: 2px;
+    margin: 5px auto;
+    background-color: var(--color-text);
+    transition: all var(--transition-fast);
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.hero {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    transform: scale(1.05);
+    /* Slight zoom for subtle animation effect */
+    animation: slowZoom 20s infinite alternate linear;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%);
+    z-index: -1;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 1;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    line-height: 1;
+    margin-bottom: 20px;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+    display: inline-block;
+    transition: text-shadow 1s ease-in-out;
+}
+
+/* Subtle, classy glass/glow effect that happens occasionally, NO bouncing */
+.hero-title.active {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(197, 160, 89, 0.4);
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    letter-spacing: 0.3em;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 15px 40px;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    border: 1px solid var(--color-text);
+    background: transparent;
+    color: var(--color-text); /* Added for visibility */
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    line-height: normal; /* Added for vertical centering */
+    text-align: center;
+}
+
+.btn-primary {
+    background: var(--color-text);
+    color: var(--color-bg);
+}
+
+.btn-primary:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-bg);
+}
+
+.btn-outline {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-outline:hover {
+    border-color: var(--color-text);
+    background: var(--color-text);
+    color: var(--color-bg);
+}
+
+/* ==========================================================================
+   Video Section
+   ========================================================================== */
+#video {
+    scroll-margin-top: 120px;
+}
+
+.video-title {
+    font-family: var(--font-subheading);
+    font-size: 2.2rem;
+    letter-spacing: 0.2em;
+    text-align: center;
+    color: var(--color-text);
+    margin-top: 80px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.local-video {
+    width: 100%;
+    max-width: 605px;
+    height: auto;
+    box-shadow: 0 0 30px rgba(197, 160, 89, 0.2);
+    border: 1px solid var(--color-border);
+}
+
+/* ==========================================================================
+   Music Grid
+   ========================================================================== */
+.music-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.music-item {
+    position: relative;
+    display: block;
+    overflow: hidden;
+}
+
+.music-cover {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-size: cover;
+    background-position: center;
+    transition: transform var(--transition-slow);
+}
+
+.music-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+    opacity: 0;
+    pointer-events: none;
+    /* Ensure it doesn't block interactions */
+    transform: translateY(20px);
+    transition: all var(--transition-fast);
+}
+
+/* Hide music info as the titles are on the covers */
+.music-item .music-info {
+    display: none;
+}
+
+.music-info h3 {
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 5px;
+}
+
+.music-info p {
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+}
+
+.music-item.is-playing .music-info {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.music-item.is-playing .music-cover {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--color-accent);
+}
+
+.music-item.is-playing .music-info h3::after {
+    content: ' 🔊';
+    font-size: 0.8em;
+}
+
+/* ==========================================================================
+   Tour List
+   ========================================================================== */
+.tour-list {
+    border-top: 1px solid var(--color-border);
+}
+
+.tour-item {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr auto;
+    align-items: center;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color var(--transition-fast);
+}
+
+.tour-item:hover {
+    background-color: var(--color-surface);
+}
+
+.tour-date {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+}
+
+.tour-venue {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+}
+
+.tour-location {
+    font-size: 1rem;
+    color: #888;
+    letter-spacing: 0.05em;
+}
+
+/* Hide ALL Bandsintown action buttons (Notify Me, RSVP, Track, etc.) */
+.bit-play-my-city-button,
+.bit-request-show,
+.bit-request-show-button,
+.bit-rsvp,
+.bit-rsvp-button,
+.bit-track-button,
+.bit-notify-me-button,
+.bit-follow-section,
+.bit-event__buttons,
+.bit-event__buttons-wrapper,
+[class*="bit-play-my-city"],
+[class*="bit-request-show"],
+[class*="bit-rsvp"],
+[class*="bit-track"],
+[class*="bit-notify"],
+[class*="bit-follow"],
+[class*="bit-event__button"],
+[data-bit-btn],
+a[href*="bandsintown"][class*="btn"],
+.bit-widget a.bit-offers__btn,
+.bit-widget button[class*="notify"],
+.bit-widget button[class*="Notify"],
+.bit-widget a[class*="notify"],
+.bit-widget [class*="notify-me"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+footer {
+    background-color: var(--color-surface);
+    padding: 100px 0 40px;
+    border-top: 1px solid var(--color-border);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 60px;
+    margin-bottom: 80px;
+}
+
+.mailing-list h3 {
+    font-size: 1.2rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 20px;
+}
+
+.subscribe-form {
+    display: flex;
+    max-width: 400px;
+}
+
+.subscribe-form input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--color-text);
+    padding: 10px 0;
+    font-family: var(--font-heading);
+    letter-spacing: 0.1em;
+    flex-grow: 1;
+    outline: none;
+    transition: border-color var(--transition-fast);
+}
+
+.subscribe-form input:focus {
+    border-color: var(--color-text);
+}
+
+.subscribe-form button {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    letter-spacing: 0.1em;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+
+.subscribe-form button:hover {
+    color: var(--color-accent);
+}
+
+.social-links {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 15px 40px;
+    justify-content: end;
+}
+
+.social-links a {
+    font-family: var(--font-heading);
+    font-size: 1.1rem; /* Slightly smaller to fit 12 links better */
+    letter-spacing: 0.15em;
+    text-align: right;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #666;
+    letter-spacing: 0.1em;
+}
+
+/* ==========================================================================
+   SoundCloud & Booking Styles
+   ========================================================================== */
+.soundcloud-section {
+    margin-top: 100px;
+}
+
+.soundcloud-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.soundcloud-card {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    transition: transform var(--transition-slow);
+}
+
+.soundcloud-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    transition: filter var(--transition-fast);
+}
+
+.soundcloud-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    z-index: 2;
+}
+
+.soundcloud-overlay span {
+    font-family: var(--font-subheading);
+    letter-spacing: 0.2em;
+    font-size: 1.2rem;
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+    padding: 10px 20px;
+}
+
+.soundcloud-card:hover .soundcloud-overlay {
+    opacity: 1;
+}
+
+.soundcloud-card:hover img {
+    filter: blur(5px);
+}
+
+.soundcloud-card:hover {
+    transform: scale(1.02);
+}
+
+.booking-contact {
+    margin-bottom: 40px;
+}
+
+.booking-contact h3 {
+    font-size: 1.2rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 10px;
+}
+
+.booking-contact p a {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--color-accent);
+}
+
+.footer-logo {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.footer-logo img {
+    max-width: 150px;
+    height: auto;
+    opacity: 0.8;
+    transition: opacity var(--transition-fast);
+}
+
+.footer-logo img:hover {
+    opacity: 1;
+}
+
+/* SoundCloud Section Additions */
+.soundcloud-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.soundcloud-player-box {
+    margin-top: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 0;
+    overflow: hidden;
+    transition: all var(--transition-slow);
+    opacity: 0;
+}
+
+.soundcloud-player-box.active {
+    height: 450px; /* Increased for SoundCloud visual player */
+    opacity: 1;
+    margin-bottom: 30px;
+    background: #111; /* Fallback background */
+}
+
+.soundcloud-player-box iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    box-shadow: 0 0 20px rgba(197, 160, 89, 0.2);
+}
+
+/* ==========================================================================
+   Audio Toggle
+   ========================================================================== */
+.audio-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    transition: all var(--transition-fast);
+}
+
+.audio-toggle:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.audio-toggle.is-playing {
+    border-color: var(--color-accent);
+}
+
+/* ==========================================================================
+   Animations & Keyframes
+   ========================================================================== */
+@keyframes slowZoom {
+    0% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1.15);
+    }
+}
+
+/* Reveal Text Animation */
+.reveal-text {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(30px) scale(0.95);
+    transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-text.active {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+}
+
+/* Fade In Animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.fade-in.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 {
+    transition-delay: 0.2s;
+}
+
+.delay-2 {
+    transition-delay: 0.4s;
+}
+
+.delay-3 {
+    transition-delay: 0.6s;
+}
+
+.delay-4 {
+    transition-delay: 0.8s;
+}
+
+
+/* ==========================================================================
+   Promo Release (La Isla Bonita - Centered Block)
+   ========================================================================== */
+.promo-container {
+    max-width: 300px;
+    margin: 0 auto 60px auto;
+}
+
+.promo-release-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    padding: 0;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+    box-shadow: 0 0 30px rgba(197, 160, 89, 0.1);
+}
+
+.promo-release-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(197, 160, 89, 0.25);
+    border-color: var(--color-accent);
+}
+
+.promo-release-cover-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.promo-release-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--transition-slow);
+}
+
+.promo-release-card:hover .promo-release-cover {
+    transform: scale(1.05);
+}
+
+.promo-release-details {
+    padding: 15px 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lately-subtitle {
+    font-size: 1.6rem !important;
+    font-family: var(--font-heading) !important;
+    letter-spacing: 0.25em !important;
+    color: var(--color-accent) !important;
+    margin-top: -40px !important;
+    margin-bottom: 55px !important;
+}
+
+.promo-release-artist {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    color: var(--color-text);
+    margin-bottom: 3px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.promo-release-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+    margin-bottom: 15px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.promo-release-btn {
+    width: 100%;
+    border-color: var(--color-accent) !important;
+    background: transparent !important;
+    color: var(--color-accent) !important;
+    padding: 8px 12px !important;
+    font-size: 0.7rem !important;
+    letter-spacing: 0.12em !important;
+    transition: all var(--transition-fast);
+}
+
+.promo-release-btn:hover {
+    background: var(--color-accent) !important;
+    color: var(--color-bg) !important;
+}
+
+/* ==========================================================================
+   Safe Area (iPhone X+ notch & home bar)
+   ========================================================================== */
+@supports (padding: env(safe-area-inset-top)) {
+    .navbar {
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+
+    footer {
+        padding-bottom: calc(40px + env(safe-area-inset-bottom));
+    }
+
+    .audio-toggle {
+        bottom: calc(30px + env(safe-area-inset-bottom));
+        right: calc(30px + env(safe-area-inset-right));
+    }
+}
+
+/* ==========================================================================
+   Touch UX — cursor & tap affordance
+   ========================================================================== */
+.music-item {
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(197, 160, 89, 0.2);
+}
+
+.soundcloud-card {
+    -webkit-tap-highlight-color: rgba(197, 160, 89, 0.2);
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .music-item:active .music-cover {
+        transform: scale(0.97);
+        transition: transform 0.1s ease;
+    }
+
+    .soundcloud-card:hover .soundcloud-overlay {
+        opacity: 0;
+    }
+
+    .soundcloud-card:active .soundcloud-overlay {
+        opacity: 1;
+    }
+
+}
+
+/* ==========================================================================
+   Responsive — Tablet (max-width: 900px)
+   ========================================================================== */
+@media (max-width: 900px) {
+    .section {
+        padding: 80px 0;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+
+    .section-subtitle {
+        margin-top: -25px;
+        margin-bottom: 40px;
+    }
+
+    .tour-item {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .tour-item .btn {
+        margin-top: 15px;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--color-bg);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right var(--transition-fast);
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links li {
+        margin: 20px 0;
+    }
+
+    .nav-links a {
+        font-size: 2rem;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .music-grid {
+        gap: 25px;
+    }
+
+    .soundcloud-section {
+        margin-top: 60px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .mailing-list {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .subscribe-form {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .social-links a {
+        text-align: center;
+    }
+
+    .video-title {
+        font-size: 1.8rem;
+        margin-top: 50px;
+    }
+
+    .lately-subtitle {
+        font-size: 1.3rem !important;
+    }
+}
+
+/* ==========================================================================
+   Responsive — Mobile (max-width: 600px)
+   ========================================================================== */
+@media (max-width: 600px) {
+    .section {
+        padding: 60px 0;
+    }
+
+    .promo-container {
+        max-width: none;
+        margin-bottom: 40px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        letter-spacing: 0.12em;
+        margin-bottom: 30px;
+    }
+
+    .section-subtitle {
+        font-size: 0.75rem;
+        margin-top: -18px;
+        margin-bottom: 30px;
+    }
+
+    .lately-subtitle {
+        font-size: 1.1rem !important;
+        margin-top: -20px !important;
+        margin-bottom: 30px !important;
+    }
+
+    .music-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .video-title {
+        font-size: 1.4rem;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+
+    .video-container {
+        margin-top: 20px;
+    }
+
+    .promo-release-artist {
+        font-size: 1rem;
+    }
+
+    .promo-release-title {
+        font-size: 1rem;
+        margin-bottom: 12px;
+    }
+
+    .promo-release-btn {
+        font-size: 0.7rem !important;
+        padding: 8px 12px !important;
+    }
+
+    .soundcloud-section {
+        margin-top: 40px;
+    }
+
+    .soundcloud-player-box.active {
+        height: 300px;
+    }
+
+    .soundcloud-overlay span {
+        font-size: 0.9rem;
+        padding: 8px 14px;
+    }
+
+    footer {
+        padding: 60px 0 30px;
+    }
+
+    .footer-content {
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+
+    .booking-contact {
+        margin-bottom: 25px;
+    }
+
+    .booking-contact h3 {
+        font-size: 1rem;
+    }
+
+    .booking-contact p a {
+        font-size: 0.95rem;
+    }
+
+    .mailing-list h3 {
+        font-size: 1rem;
+    }
+
+    .social-links {
+        justify-content: center;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px 16px;
+    }
+
+    .social-links a {
+        text-align: center;
+        font-size: 0.85rem;
+    }
+
+    .footer-logo img {
+        max-width: 100px;
+    }
+
+    .audio-toggle {
+        bottom: 15px;
+        right: 15px;
+        padding: 8px 14px;
+        font-size: 0.7rem;
+    }
+
+    .navbar {
+        padding: 20px 0;
+    }
+
+    .navbar.scrolled {
+        padding: 12px 0;
+    }
+
+    .nav-links a {
+        font-size: 1.6rem;
+    }
+}
+
+/* ==========================================================================
+   Responsive — Small phones (max-width: 380px)
+   ========================================================================== */
+@media (max-width: 380px) {
+    .music-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .hero-title {
+        letter-spacing: 0.08em;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+        letter-spacing: 0.08em;
+    }
+
+    .nav-links a {
+        font-size: 1.3rem;
+    }
+
+    .social-links a {
+        font-size: 0.8rem;
+    }
+
+    .promo-container {
+        max-width: 100%;
+    }
+}
+
+/* ==========================================================================
+   Responsive — Landscape phone
+   ========================================================================== */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        height: 100svh;
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 8vw, 4rem);
+    }
+
+    .soundcloud-player-box.active {
+        height: 250px;
+    }
+
+    .nav-links a {
+        font-size: 1.2rem;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+}
